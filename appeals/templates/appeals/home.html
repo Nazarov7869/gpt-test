@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card hero">
+    <h1>Murojaat qiling, xavfsiz va tez</h1>
+    <p>Talabalar va fuqarolar murojaat, ariza, taklif yoki shikoyat yuborishi mumkin. Qabul qiluvchilar: Superadmin, Rektor, Dekan, Prorektor.</p>
+    <div class="cta-row">
+        {% if user.is_authenticated %}
+            <a class="btn" href="{% url 'appeal_create' %}">Murojaat yuborish</a>
+            <a class="btn btn-alt" href="{% url 'dashboard' %}">Dashboard</a>
+        {% else %}
+            <a class="btn" href="{% url 'register' %}">Boshlash</a>
+            <a class="btn btn-alt" href="{% url 'login' %}">Kirish</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

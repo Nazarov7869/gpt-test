@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Murojaatni tahrirlash{% endblock %}
+{% block content %}
+<section class="card form-card">
+    <h2>#{{ appeal.id }} ni tahrirlash</h2>
+    <p><strong>Mavzu:</strong> {{ appeal.subject }}</p>
+    <p><strong>Matn:</strong> {{ appeal.body }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Saqlash</button>
+    </form>
+</section>
+{% endblock %}

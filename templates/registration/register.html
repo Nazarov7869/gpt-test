@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Ro'yxatdan o'tish{% endblock %}
+{% block content %}
+<section class="card form-card">
+    <h2>Foydalanuvchi ro'yxatdan o'tishi</h2>
+    <p>Talaba yoki fuqaro sifatida akkaunt oching va murojaatingizni yuboring.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Ro'yxatdan o'tish</button>
+    </form>
+</section>
+{% endblock %}

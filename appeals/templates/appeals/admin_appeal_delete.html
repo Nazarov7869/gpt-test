@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Murojaatni o'chirish{% endblock %}
+{% block content %}
+<section class="card form-card">
+    <h2>#{{ appeal.id }} ni o'chirish</h2>
+    <p>Haqiqatan ham ushbu murojaatni o'chirmoqchimisiz?</p>
+    <form method="post">{% csrf_token %}<button class="btn danger" type="submit">Ha, o'chirish</button></form>
+</section>
+{% endblock %}

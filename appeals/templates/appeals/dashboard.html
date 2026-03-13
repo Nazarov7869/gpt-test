@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Boshqaruv paneli{% endblock %}
+{% block content %}
+<section class="card profile-banner">
+    <h2>{{ request.user.get_full_name|default:request.user.username }}</h2>
+    <p>
+        {% if profile %}{{ profile.get_role_display }}{% else %}Foydalanuvchi{% endif %}
+        · Jami {{ appeals_total }} ta murojaat
+    </p>
+</section>
+
+<section class="grid-4">
+    <article class="card stat"><h4>Yangi</h4><strong>{{ appeals_new }}</strong></article>
+    <article class="card stat"><h4>Ko'rib chiqilgan</h4><strong>{{ appeals_viewed }}</strong></article>
+    <article class="card stat"><h4>Ko'rilmoqda</h4><strong>{{ appeals_in_review }}</strong></article>
+    <article class="card stat"><h4>Javob berilgan</h4><strong>{{ appeals_answered }}</strong></article>
+</section>
+
+<section class="card">
+    <h3>Mening murojaatlarim</h3>
+    <table>
+        <thead><tr><th>Sana</th><th>Turi</th><th>Qabul qiluvchi</th><th>Mavzu</th><th>Holat</th><th>Fayl</th></tr></thead>
+        <tbody>
+        {% for appeal in appeals %}
+            <tr>
+                <td>{{ appeal.created_at|date:'d.m.Y H:i' }}</td>
+                <td>{{ appeal.get_category_display }}</td>
+                <td>{{ appeal.recipient.get_full_name|default:appeal.recipient.username }}</td>
+                <td>{{ appeal.subject }}</td>
+                <td>{{ appeal.get_status_display }}</td>
+                <td>{% if appeal.attachment %}<a href="{{ appeal.attachment.url }}">Yuklab olish</a>{% else %}-{% endif %}</td>
+            </tr>
+            {% if appeal.admin_comment %}
+                <tr><td colspan="6" class="comment">Admin izohi: {{ appeal.admin_comment }}</td></tr>
+            {% endif %}
+        {% empty %}
+            <tr><td colspan="6">Hozircha murojaat mavjud emas.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

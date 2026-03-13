@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Tizimga kirish{% endblock %}
+{% block content %}
+<section class="login-wrap">
+    <div class="card login-info">
+        <h1>Zamonaviy Boshqaruv Tizimi</h1>
+        <p>Murojaatlarni samarali boshqaring, real vaqt statistikani kuzating va talabalar bilan aloqani mustahkamlang.</p>
+        <ul>
+            <li>🔔 Real vaqt bildirishnomalar</li>
+            <li>📊 Keng qamrovli tahlil</li>
+            <li>🔐 Xavfsiz tizim</li>
+            <li>👥 Rol asosida kirish boshqaruvi</li>
+        </ul>
+    </div>
+    <div class="card form-card">
+        <h2>Tizimga kirish</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Kirish</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

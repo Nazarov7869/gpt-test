@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Murojaat yuborish{% endblock %}
+{% block content %}
+<section class="card stepper">
+    <div class="steps"><span class="on">1 Shaxsiy ma'lumot</span><span class="on">2 Murojaat turi</span><span class="on">3 Matn & yuborish</span></div>
+    <h2>Yangi murojaat yuborish</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Yuborish</button>
+    </form>
+</section>
+{% endblock %}
