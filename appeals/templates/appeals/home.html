@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card hero">
+    <h1>Murojaatlarni qabul qilish platformasi</h1>
+    <p>Har bir foydalanuvchi o'z sahifasida murojaat yuboradi. Ko'rish, tahrirlash va o'chirish faqat admin uchun ochiq.</p>
+    {% if not user.is_authenticated %}
+        <a class="btn" href="{% url 'register' %}">Boshlash</a>
+    {% else %}
+        <a class="btn" href="{% url 'dashboard' %}">Sahifamga o'tish</a>
+    {% endif %}
+</section>
+{% endblock %}
