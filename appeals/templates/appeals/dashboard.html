@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Mening sahifam{% endblock %}
+{% block content %}
+<section class="grid-3">
+    <article class="card stat"><h3>Jami</h3><strong>{{ appeals_total }}</strong></article>
+    <article class="card stat"><h3>Javob berilgan</h3><strong>{{ appeals_answered }}</strong></article>
+    <article class="card stat"><h3>Yangi murojaat</h3><a class="btn" href="{% url 'appeal_create' %}">Yuborish</a></article>
+</section>
+
+<section class="card">
+    <h2>Mening murojaatlarim</h2>
+    <table>
+        <thead><tr><th>Sana</th><th>Mavzu</th><th>Holat</th><th>Admin izohi</th></tr></thead>
+        <tbody>
+        {% for appeal in appeals %}
+            <tr>
+                <td>{{ appeal.created_at|date:'d.m.Y H:i' }}</td>
+                <td>{{ appeal.subject }}</td>
+                <td>{{ appeal.get_status_display }}</td>
+                <td>{{ appeal.admin_comment|default:'-' }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">Hozircha murojaat yo'q.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
