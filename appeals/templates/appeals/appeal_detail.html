@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Murojaat detali{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>{{ appeal.subject }}</h2>
+  <p><b>Holat:</b> {{ appeal.get_status_display }}</p>
+  <p><b>Matn:</b> {{ appeal.body }}</p>
+  {% if appeal.admin_note %}<p><b>Admin javobi:</b> {{ appeal.admin_note }}</p>{% endif %}
+</section>
+{% endblock %}

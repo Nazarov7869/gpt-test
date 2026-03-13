@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Admin - Murojaatlar{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>Barcha murojaatlar</h2>
+  <table>
+    <tr><th>ID</th><th>Foydalanuvchi</th><th>Mavzu</th><th>Holat</th><th>Amallar</th></tr>
+    {% for appeal in appeals %}
+      <tr>
+        <td>{{ appeal.id }}</td>
+        <td>{{ appeal.owner.username }}</td>
+        <td>{{ appeal.subject }}</td>
+        <td>{{ appeal.get_status_display }}</td>
+        <td>
+          <a href="{% url 'admin_appeal_edit' appeal.pk %}">Tahrirlash</a>
+          <a href="{% url 'admin_appeal_delete' appeal.pk %}">O'chirish</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">Murojaatlar mavjud emas.</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}
